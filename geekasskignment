@@ -1,0 +1,35 @@
+class Solution:
+    # Function to sort an array of 0s, 1s, and 2s
+    def sort012(self, arr):
+        low, mid, high = 0, 0, len(arr) - 1
+        
+        while mid <= high:
+            if arr[mid] == 0:  # Swap current element with the low pointer and move both forward
+                arr[low], arr[mid] = arr[mid], arr[low]
+                low += 1
+                mid += 1
+            elif arr[mid] == 1:  # Correctly placed, just move forward
+                mid += 1
+            else:  # arr[mid] == 2; Swap current element with the high pointer and move high backward
+                arr[mid], arr[high] = arr[high], arr[mid]
+                high -= 1
+
+//////////////
+
+
+class Solution:
+    def binarysearch(self, arr, k):
+        left, right = 0, len(arr) - 1
+        result = -1  # To store the smallest index found
+        
+        while left <= right:
+            mid = left + (right - left) // 2  # Avoids potential overflow
+            if arr[mid] == k:
+                result = mid  # Store the index
+                right = mid - 1  # Continue searching for earlier occurrences
+            elif arr[mid] < k:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return result
